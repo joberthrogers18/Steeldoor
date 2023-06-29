@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+#  api:
+#    depends_on:
+#      - db
+#    build: ApiSteelDoor
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - spring-postgres
+  db:
+    image: mysql/mysql-server:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: steeldoor
+      MYSQL_USER: teste
+      MYSQL_PASSWORD: teste
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./db/start_db.sql:/docker-entrypoint-initdb.d/init.sql:z
+    networks:
+      - spring-postgres
+volumes:
+  db:
+    driver: local
+networks:
+  spring-postgres:
