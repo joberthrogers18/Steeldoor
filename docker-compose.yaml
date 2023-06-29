@@ -1,13 +1,5 @@
 version: '3.8'
 services:
-#  api:
-#    depends_on:
-#      - db
-#    build: ApiSteelDoor
-#    ports:
-#      - 8080:8080
-#    networks:
-#      - spring-postgres
   db:
     image: mysql/mysql-server:8.0
     restart: always
@@ -20,6 +12,16 @@ services:
       - '3306:3306'
     volumes:
       - ./db/start_db.sql:/docker-entrypoint-initdb.d/init.sql:z
+    networks:
+      - spring-postgres
+  api:
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    build: ApiSteelDoor
+    ports:
+      - 8080:8080
     networks:
       - spring-postgres
 volumes:
