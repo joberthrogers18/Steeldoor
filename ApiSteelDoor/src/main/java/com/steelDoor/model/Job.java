@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="Job")
+@Table(name="job")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,7 +24,7 @@ public class Job {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "companyName", nullable = false)
+    @Column(name = "company_name", nullable = false)
     private String companyName;
 
     @Column(name = "location", nullable = false)
@@ -36,10 +36,10 @@ public class Job {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "minSalary", nullable = false)
+    @Column(name = "min_salary", nullable = false)
     private Double minSalary;
 
-    @Column(name = "maxSalary", nullable = false)
+    @Column(name = "max_salary", nullable = false)
     private Double maxSalary;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -47,5 +47,9 @@ public class Job {
             joinColumns = @JoinColumn(name = "id_job", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_skill", referencedColumnName = "id"))
     private List<Skill> skills = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "jobs", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<User> users = new ArrayList<>();
 
 }

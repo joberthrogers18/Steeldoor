@@ -1,14 +1,23 @@
 package com.steelDoor.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="Company")
+@Table(name="company")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idCompany")
+    @Column(name = "id_company")
     private Long idCompany;
 
     @Column(name = "name", nullable = false)
@@ -16,29 +25,5 @@ public class Company {
 
     @Column(name = "address", nullable = false)
     private String address;
-
-    public Long getIdCompany() {
-        return idCompany;
-    }
-
-    public void setIdCompany(Long idCompany) {
-        this.idCompany = idCompany;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
 }

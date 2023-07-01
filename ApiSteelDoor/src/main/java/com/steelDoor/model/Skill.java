@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="Skill")
+@Table(name="skill")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class Skill {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nameSkill", nullable = false)
+    @Column(name = "name_kill", nullable = false)
     private String nameSkill;
 
     @ManyToMany(mappedBy = "skills", cascade = CascadeType.ALL)
