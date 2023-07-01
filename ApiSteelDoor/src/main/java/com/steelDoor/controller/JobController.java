@@ -1,5 +1,6 @@
 package com.steelDoor.controller;
 
+import com.steelDoor.dto.JobRequest;
 import com.steelDoor.model.Company;
 import com.steelDoor.model.Job;
 import com.steelDoor.service.CompanyService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,11 @@ public class JobController {
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
         } catch (Exception e) {
             map.put("message", e.getMessage());
+
+            if(e instanceof EntityNotFoundException) {
+                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+            }
+
             return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -38,7 +45,7 @@ public class JobController {
     public ResponseEntity<Object> getAllJobs() {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            List<Job> jobs = jobService.getAllJobs();
+            List<Job> jobs = this.jobService.getAllJobs();
             map.put("data", jobs);
             return new ResponseEntity<Object>(map, HttpStatus.OK);
         } catch (Exception e) {
@@ -51,17 +58,17 @@ public class JobController {
     public ResponseEntity<Object> getCompanyById(@PathVariable(value = "idJob") Long id) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            Optional<Job> job = jobService.getJobById(id);
-
-            if (job.isEmpty()) {
-                map.put("message", "Job not found.");
-                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
-            }
+            Job job = jobService.getJobById(id);
 
             map.put("data", job);
             return new ResponseEntity<Object>(map, HttpStatus.OK);
         } catch (Exception e) {
             map.put("message", e.getMessage());
+
+            if (e instanceof EntityNotFoundException) {
+                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+            }
+
             return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -75,6 +82,11 @@ public class JobController {
             return new ResponseEntity<Object>(map, HttpStatus.OK);
         } catch (Exception e) {
             map.put("message", e);
+
+            if (e instanceof EntityNotFoundException) {
+                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+            }
+
             return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -88,6 +100,11 @@ public class JobController {
             return new ResponseEntity<Object>(map, HttpStatus.OK);
         } catch (Exception e) {
             map.put("message", e);
+
+            if (e instanceof EntityNotFoundException) {
+                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+            }
+
             return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

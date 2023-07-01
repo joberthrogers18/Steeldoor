@@ -1,50 +1,36 @@
 package com.steelDoor.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="Skill")
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Skill {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idSkill")
-    private Long idSkill;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "nameSkill", nullable = false)
     private String nameSkill;
 
-    @ManyToMany
-    @JoinTable(
-            name = "jobSkills",
-            joinColumns = @JoinColumn(name = "idSkill"),
-            inverseJoinColumns = @JoinColumn(name = "idJob"))
-    Set<Job> jobs;
-
-    public Long getIdSkill() {
-        return idSkill;
-    }
-
-    public void setIdSkill(Long idSkill) {
-        this.idSkill = idSkill;
-    }
-
-    public String getNameSkill() {
-        return nameSkill;
-    }
-
-    public void setNameSkill(String nameSkill) {
-        this.nameSkill = nameSkill;
-    }
-
-    public Set<Job> getJobs() {
-        return jobs;
-    }
-
-    public void setJobs(Set<Job> jobs) {
-        this.jobs = jobs;
-    }
+    @ManyToMany(mappedBy = "skills", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Job> jobs = new ArrayList<>();
 
 
 }
