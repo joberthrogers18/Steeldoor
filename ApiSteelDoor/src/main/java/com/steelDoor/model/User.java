@@ -36,6 +36,9 @@ public class User {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Column(name = "type_user", nullable = false)
+    private String role;
+
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Job> jobs = new ArrayList<>();
