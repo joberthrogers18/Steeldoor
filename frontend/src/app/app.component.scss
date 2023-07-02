@@ -1,25 +1,3 @@
-@use "variables";
-
-::ng-deep .app {
-  .mat-toolbar {
-    background-color: variables.$primary-color;
-    color: variables.$secondary-color-text;
-    font-weight: bold;
-  }
-
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 15px;
-
-    mat-icon {
-      font-weight: 500;
-    }
-
-    span {
-      margin-left: 10px;
-      font-size: 20px;
-    }
-  }
-}
+@import "primeng/resources/primeng.min.css";
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeicons/primeicons.css";

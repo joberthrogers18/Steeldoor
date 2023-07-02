@@ -1,0 +1,69 @@
+@import "variables";
+
+::ng-deep .login {
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1032%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(25%2c 167%2c 206%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c491 C 128%2c431 384%2c185.2 640%2c191 C 896%2c196.8 1024%2c535.4 1280%2c520 C 1536%2c504.6 1792%2c195.2 1920%2c114L1920 1080L0 1080z' fill='rgba(20%2c 108%2c 148%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c840 C 192%2c819.6 576%2c741.4 960%2c738 C 1344%2c734.6 1728%2c806 1920%2c823L1920 1080L0 1080z' fill='rgba(175%2c 211%2c 226%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1032'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+
+  .logo {
+    display: flex;
+    align-items: center;
+    color: $primary-color;
+    font-size: 22px;
+    font-weight: bold;
+
+    i {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+
+  .login-card {
+    width: 40%;
+    height: 100%;
+    background-color: $main-background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .welcome {
+    width: 250px;
+    font-size: 28px;
+    font-weight: 600;
+    color: $main-color-text;
+  }
+
+  .fields {
+    .p-button {
+      background-color: $secondary-color;
+      color: $secondary-color-text;
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+
+  .inputs-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 250px;
+
+    label {
+      margin-bottom: 5px;
+      color: $label-color;
+      font-size: 14px;
+    }
+  }
+
+  .redirect {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      margin-top: 15px;
+      color: $primary-color;
+    }
+  }
+}
