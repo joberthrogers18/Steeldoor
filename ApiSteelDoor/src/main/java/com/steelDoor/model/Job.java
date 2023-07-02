@@ -48,8 +48,10 @@ public class Job {
             inverseJoinColumns = @JoinColumn(name = "id_skill", referencedColumnName = "id"))
     private List<Skill> skills = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "jobs", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "job_user",
+            joinColumns = @JoinColumn(name = "id_job", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"))
     private List<User> users = new ArrayList<>();
 
 }

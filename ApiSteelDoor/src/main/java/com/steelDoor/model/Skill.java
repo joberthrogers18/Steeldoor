@@ -32,5 +32,4 @@ public class Skill {
     @JsonBackReference
     private List<Job> jobs = new ArrayList<>();
 
-
 }

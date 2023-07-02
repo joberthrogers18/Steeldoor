@@ -27,16 +27,17 @@ public class User {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
     @Column(name = "birthday", nullable = false)
     private Date birthday;
 
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_job",
-            joinColumns = @JoinColumn(name = "id_user", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id_job", referencedColumnName = "id"))
+    @ManyToMany(mappedBy = "jobs", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Job> jobs = new ArrayList<>();
 
 }

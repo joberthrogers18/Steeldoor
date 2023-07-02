@@ -55,7 +55,7 @@ public class JobController {
     }
 
     @RequestMapping(value ="/job/{idJob}", method= RequestMethod.GET)
-    public ResponseEntity<Object> getCompanyById(@PathVariable(value = "idJob") Long id) {
+    public ResponseEntity<Object> getJobById(@PathVariable(value = "idJob") Long id) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             Job job = jobService.getJobById(id);
@@ -74,7 +74,7 @@ public class JobController {
     }
 
     @RequestMapping(value="/job/{idJob}", method=RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteCompany(@PathVariable(value = "idJob") Long id) {
+    public ResponseEntity<Object> deleteJob(@PathVariable(value = "idJob") Long id) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             jobService.deleteJob(id);
@@ -92,7 +92,7 @@ public class JobController {
     }
 
     @RequestMapping(value = "/job/{idJob}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateCompany(@PathVariable(value = "idJob") Long id, @RequestBody Job job) {
+    public ResponseEntity<Object> updateJob(@PathVariable(value = "idJob") Long id, @RequestBody Job job) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             Job jobUpdated = jobService.updateJob(id, job);
