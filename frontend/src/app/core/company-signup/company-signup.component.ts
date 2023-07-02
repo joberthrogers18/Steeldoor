@@ -15,6 +15,7 @@ export class CompanySignupComponent implements OnInit {
       address: new FormControl<string>(''),
       firstName: new FormControl<string>(''),
       lastName: new FormControl<string>(''),
+      birthday: new FormControl<string>(''),
       phone: new FormControl<string>(''),
       email: new FormControl<string>(''),
       password: new FormControl<string>(''),
