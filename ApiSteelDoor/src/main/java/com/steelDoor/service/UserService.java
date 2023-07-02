@@ -1,7 +1,9 @@
 package com.steelDoor.service;
 
+import com.steelDoor.model.Company;
 import com.steelDoor.model.Job;
 import com.steelDoor.model.User;
+import com.steelDoor.repository.CompanyRepository;
 import com.steelDoor.repository.JobRepository;
 import com.steelDoor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CompanyRepository companyRepository;
 
     public User createUser(User user) {
         return userRepository.save(user);
@@ -48,6 +53,9 @@ public class UserService {
         currentUser.setLastName(user.getLastName());
         currentUser.setBirthday(user.getBirthday());
         currentUser.setPhone(user.getPhone());
+        currentUser.setCompany(user.getCompany());
+        currentUser.setEmail(user.getEmail());
+        currentUser.setPassword(user.getPassword());
 
         return userRepository.save(currentUser);
     }
