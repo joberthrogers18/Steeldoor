@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MenubarModule } from 'primeng/menubar';
 
-import { ComponentsRoutingModule } from './components-routing.module';
 import { HeaderComponent } from './header/header.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [CommonModule, ComponentsRoutingModule],
+  imports: [CommonModule, MenubarModule, FormsModule],
   exports: [HeaderComponent],
 })
 export class ComponentsModule {}
