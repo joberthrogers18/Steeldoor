@@ -90,4 +90,5 @@ public class CompanyController {
             return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

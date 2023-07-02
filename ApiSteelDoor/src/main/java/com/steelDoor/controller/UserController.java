@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -43,7 +44,6 @@ public class UserController {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             List<User> users = userService.getAllUsers();
-            map.put("message", "User create successfully");
             map.put("data", users);
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
         } catch (Exception e) {
