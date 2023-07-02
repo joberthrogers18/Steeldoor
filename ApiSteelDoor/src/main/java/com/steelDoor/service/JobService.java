@@ -5,8 +5,10 @@ import com.steelDoor.dto.SkillRequest;
 import com.steelDoor.model.Company;
 import com.steelDoor.model.Job;
 import com.steelDoor.model.Skill;
+import com.steelDoor.model.User;
 import com.steelDoor.repository.JobRepository;
 import com.steelDoor.repository.SkillRepository;
+import com.steelDoor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,9 @@ public class JobService {
 
     @Autowired
     SkillRepository skillRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     public Job createJob(Job job) {
         Job currentJob = new Job();
@@ -77,6 +82,15 @@ public class JobService {
         }
 
         currentJob.setSkills(skills);
+
+        List<User> users = new ArrayList<User>();
+        for (User user : job.getUsers()) {
+            User userFound = this.userRepository.findById(user.getId())
+                    .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + user.getId()));
+            users.add(userFound);
+        }
+
+        currentJob.setUsers(users);
 
         return jobRepository.save(currentJob);
     }
