@@ -1,0 +1,58 @@
+@import "variables";
+
+::ng-deep .job-list {
+  // width: 100%;
+  height: calc(100vh - 50px);
+  padding: 30px;
+
+  .filters {
+  }
+
+  .list {
+    height: 100%;
+  }
+
+  .card {
+    border: 1px solid $border-color;
+    border-radius: 5px;
+
+    .title {
+      font-size: 25px;
+      font-weight: 700;
+      color: $main-color-text;
+      line-height: 1px;
+    }
+
+    .salary {
+      font-size: 12px;
+      font-weight: 600;
+      color: $primary-color;
+      line-height: 5px;
+    }
+
+    .description {
+      font-size: 14px;
+      font-weight: 600;
+      color: $description-color-text;
+    }
+
+    .skills-wrappers {
+      margin: 20px 0;
+      .skill {
+        padding: 5px 10px;
+        border-radius: 15px;
+        background-color: $primary-color;
+        color: $forth-color;
+        margin-right: 5px;
+      }
+    }
+
+    .btn-action {
+      .p-button {
+        background-color: $primary-color;
+        color: $secondary-color-text;
+        border: none;
+      }
+    }
+  }
+}

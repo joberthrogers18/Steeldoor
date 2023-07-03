@@ -1,12 +1,14 @@
 @import "primeng/resources/primeng.min.css";
 @import "primeng/resources/themes/saga-blue/theme.css";
 @import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
 
 html,
 body {
   height: 100%;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
