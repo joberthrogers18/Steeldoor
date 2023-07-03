@@ -58,7 +58,10 @@
             *ngIf="currentUrl === '/job/admin' && user.role === 'ADMIN'"
             class="flex flex-column actions-super-user"
           >
-            <p-button (click)="showDialogUsers()" label="Show Users"></p-button>
+            <p-button
+              (click)="showDialogUsers(job.users)"
+              label="Show Users"
+            ></p-button>
             <p-button class="delete" label="Delete"></p-button>
           </div>
         </div>
@@ -133,12 +136,13 @@
     [resizable]="false"
     [modal]="true"
   >
-    <div class="users">
+    <div *ngIf="auxUsers.length === 0" class="no-users">No users applied</div>
+    <div class="users" *ngFor="let user of auxUsers">
       <div class="user">
-        <p class="title">Joberth Rogers</p>
+        <p class="title">{{ user.firstName }} {{ user.lastName }}</p>
         <hr />
-        <p class="value"><span>Email:</span> joberth.rogers18@gmail.com</p>
-        <p class="value"><span>Phone:</span> +556191067698</p>
+        <p class="value"><span>Email:</span> {{ user.email }}</p>
+        <p class="value"><span>Phone:</span> {{ user.phone }}</p>
       </div>
     </div>
   </p-dialog>

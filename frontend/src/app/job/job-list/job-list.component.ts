@@ -22,6 +22,7 @@ export class JobListComponent implements OnInit {
   user: any = null;
   currentUrl: string = '';
   jobs: any = [];
+  auxUsers: any = [];
 
   constructor(private router: Router, private jobService: JobService) {
     this.user = JSON.parse(String(localStorage.getItem('user_info')));
@@ -82,7 +83,8 @@ export class JobListComponent implements OnInit {
     this.visibleDialogCreateJob = true;
   }
 
-  showDialogUsers() {
+  showDialogUsers(users: any) {
+    this.auxUsers = users;
     this.visibleDialogShowUsersJob = true;
   }
 }
