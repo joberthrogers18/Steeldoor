@@ -7,14 +7,14 @@
     <div class="welcome">
       <p>Welcome</p>
     </div>
-    <div class="fields">
+    <div class="fields" [formGroup]="formGroup">
       <div class="inputs-wrapper">
         <label>Email:</label>
         <input type="text" pInputText formControlName="email" />
       </div>
       <div class="inputs-wrapper">
         <label>Password:</label>
-        <input type="text" pInputText formControlName="Password" />
+        <input type="text" pInputText formControlName="password" />
       </div>
 
       <p-button label="Login"></p-button>

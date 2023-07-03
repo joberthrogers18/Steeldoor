@@ -15,4 +15,8 @@ export class JobService {
   createUser(body: any): Observable<any> {
     return this.http.post<any>(`http://localhost:8080/api/user`, body);
   }
+
+  loginUser(body: any): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/api/user/login`, body);
+  }
 }
