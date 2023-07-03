@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { JobService } from 'src/app/services/job.service';
 
 interface Skill {
   name: string;
@@ -17,8 +19,25 @@ export class JobListComponent implements OnInit {
   visibleDialogCreateJob: boolean = false;
   visibleDialogShowUsersJob: boolean = false;
   skills!: Skill[];
+  user: any = null;
+  currentUrl: string = '';
+  jobs: any = [];
+
+  constructor(private router: Router, private jobService: JobService) {
+    this.user = JSON.parse(String(localStorage.getItem('user_info')));
+    this.currentUrl = this.router.url;
+  }
 
   ngOnInit() {
+    if (this.user.role === 'ADMIN') {
+      this.jobService.getUserJobs(this.user.email).subscribe({
+        next: (response: any) => {
+          this.jobs = response.data;
+          console.log(response);
+        },
+      });
+    }
+
     this.formGroupFilters = new FormGroup({
       title: new FormControl(''),
       desireSalary: new FormControl(''),

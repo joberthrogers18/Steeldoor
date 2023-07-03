@@ -19,4 +19,8 @@ export class JobService {
   loginUser(body: any): Observable<any> {
     return this.http.post<any>(`http://localhost:8080/api/user/login`, body);
   }
+
+  getUserJobs(email: String) {
+    return this.http.get<any>(`http://localhost:8080/api/job/user/${email}`);
+  }
 }

@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           localStorage.setItem('user_info', JSON.stringify(response.data));
-          this.router.navigateByUrl('/job/list');
+          if (response.data.role === 'ADMIN') {
+            this.router.navigateByUrl('/job/admin');
+          } else {
+            this.router.navigateByUrl('/job/list');
+          }
         },
         error: (e: any) => {
           console.log('error login ', e);

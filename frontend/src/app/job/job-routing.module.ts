@@ -11,6 +11,10 @@ const routes: Routes = [
     path: 'applied',
     component: JobListComponent,
   },
+  {
+    path: 'admin',
+    component: JobListComponent,
+  },
 ];
 
 @NgModule({

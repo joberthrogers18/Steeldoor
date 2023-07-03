@@ -1,6 +1,6 @@
 <div class="job-list grid">
   <div class="col-2 sidebar">
-    <div class="filters" [formGroup]="formGroupFilters">
+    <div *ngIf="false" class="filters" [formGroup]="formGroupFilters">
       <div class="input-wrapper flex flex-column">
         <label htmlFor="title">Title</label>
         <input pInputText id="title" formControlName="title" />
@@ -20,42 +20,44 @@
       </div>
     </div>
 
-    <div class="titles-sidebar">
+    <div *ngIf="false" class="titles-sidebar">
       <p>Applied Jobs</p>
     </div>
 
-    <div class="titles-sidebar">
+    <div
+      *ngIf="currentUrl === '/job/admin' && user.role === 'ADMIN'"
+      class="titles-sidebar"
+    >
       <p>Jobs Created</p>
     </div>
   </div>
   <div class="col-10 list">
-    <div class="flex justify-content-end mb-5 create-job">
+    <div
+      *ngIf="currentUrl === '/job/admin' && user.role === 'ADMIN'"
+      class="flex justify-content-end mb-5 create-job"
+    >
       <p-button (click)="showDialogCreateJob()" label="Create Job"></p-button>
     </div>
-    <div class="">
+    <div class="" *ngFor="let job of jobs">
       <div class="card grid">
         <div class="col-8">
           <p class="title">
-            Sistema Web de Agendamento de Serviços de Lavagem Automotiva
+            {{ job.title }}
           </p>
-          <p class="salary">12000.00 - 15000.00</p>
+          <p class="salary">{{ job.minSalary }} - {{ job.maxSalary }}</p>
           <p class="description">
-            Cliente: Olá eu estou precisando desenvolver um sistema web que
-            tenha as funcionalidades básicas para o cliente que é entrar no site
-            e... 1)Escolher o serviço 2) Escolher um horario para lavagem do
-            carro,
+            {{ job.description }}
           </p>
-          <div class="skills-wrappers flex">
-            <div class="skill">Java</div>
-            <div class="skill">Mysql</div>
-            <div class="skill">PHP</div>
-            <div class="skill">React</div>
-            <div class="skill">Javascript</div>
+          <div class="skills-wrappers flex" *ngFor="let skill of job.skills">
+            <div class="skill">{{ skill.nameSkill }}</div>
           </div>
         </div>
         <div class="btn-action col-4 flex justify-content-end">
-          <p-button label="Apply"></p-button>
-          <div class="flex flex-column actions-super-user">
+          <p-button *ngIf="false" label="Apply"></p-button>
+          <div
+            *ngIf="currentUrl === '/job/admin' && user.role === 'ADMIN'"
+            class="flex flex-column actions-super-user"
+          >
             <p-button (click)="showDialogUsers()" label="Show Users"></p-button>
             <p-button class="delete" label="Delete"></p-button>
           </div>
