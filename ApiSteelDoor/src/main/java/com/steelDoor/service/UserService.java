@@ -1,5 +1,6 @@
 package com.steelDoor.service;
 
+import com.steelDoor.dto.RequestLogin;
 import com.steelDoor.model.Company;
 import com.steelDoor.model.Job;
 import com.steelDoor.model.User;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -58,6 +60,20 @@ public class UserService {
         currentUser.setPassword(user.getPassword());
 
         return userRepository.save(currentUser);
+    }
+
+    public User verifyIfUserExists(RequestLogin login) {
+        User user = userRepository.findByEmailEquals(login.getEmail());
+
+        if (user == null) {
+            throw new EntityNotFoundException("User not found");
+        }
+
+        if (!Objects.equals(user.getPassword(), login.getPassword())) {
+            throw new EntityNotFoundException("Email or password is not the same");
+        }
+
+        return user;
     }
 
 }

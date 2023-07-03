@@ -1,5 +1,6 @@
 package com.steelDoor.controller;
 
+import com.steelDoor.dto.RequestLogin;
 import com.steelDoor.model.Job;
 import com.steelDoor.model.Skill;
 import com.steelDoor.model.User;
@@ -112,6 +113,25 @@ public class UserController {
         try {
             User updatedUser = userService.updateUser(id, user);
             map.put("data", updatedUser);
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        } catch (Exception e) {
+            map.put("message", e.getMessage());
+
+            if (e instanceof EntityNotFoundException) {
+                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/user/login", method = RequestMethod.POST)
+    public ResponseEntity<Object> loginUser(@RequestBody RequestLogin loginData) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            User user = userService.verifyIfUserExists(loginData);
+            map.put("data", user);
 
             return new ResponseEntity<Object>(map, HttpStatus.OK);
         } catch (Exception e) {
