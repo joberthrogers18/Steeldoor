@@ -35,4 +35,12 @@ export class JobService {
   deleteJobById(id: number): Observable<any> {
     return this.http.delete<any>(`http://localhost:8080/api/job/${id}`);
   }
+
+  getAllJobs(): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/jobs`);
+  }
+
+  getAppliedJobs(id: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/user/${id}/jobs`);
+  }
 }

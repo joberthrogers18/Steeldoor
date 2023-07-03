@@ -54,6 +54,24 @@ export class JobListComponent implements OnInit {
           }
         },
       });
+    } else if (this.currentUrl === '/job/list' && this.user.role !== 'ADMIN') {
+      this.jobService.getAllJobs().subscribe({
+        next: (response: any) => {
+          this.jobs = response.data;
+        },
+        error: (e: any) => {
+          console.log('error to recovery jobs: ', e);
+        },
+      });
+    } else {
+      this.jobService.getAppliedJobs(this.user.id).subscribe({
+        next: (response: any) => {
+          this.jobs = response.data;
+        },
+        error: (e: any) => {
+          console.log('error to recovery jobs: ', e);
+        },
+      });
     }
 
     this.formGroupFilters = new FormGroup({

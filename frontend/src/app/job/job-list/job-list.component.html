@@ -1,6 +1,10 @@
 <div class="job-list grid">
   <div class="col-2 sidebar">
-    <div *ngIf="false" class="filters" [formGroup]="formGroupFilters">
+    <div
+      *ngIf="currentUrl === '/job/list' && user.role !== 'ADMIN'"
+      class="filters"
+      [formGroup]="formGroupFilters"
+    >
       <div class="input-wrapper flex flex-column">
         <label htmlFor="title">Title</label>
         <input pInputText id="title" formControlName="title" />
@@ -20,7 +24,10 @@
       </div>
     </div>
 
-    <div *ngIf="false" class="titles-sidebar">
+    <div
+      *ngIf="currentUrl === '/job/applied' && user.role !== 'ADMIN'"
+      class="titles-sidebar"
+    >
       <p>Applied Jobs</p>
     </div>
 
@@ -53,7 +60,10 @@
           </div>
         </div>
         <div class="btn-action col-4 flex justify-content-end">
-          <p-button *ngIf="false" label="Apply"></p-button>
+          <p-button
+            *ngIf="currentUrl === '/job/list' && user.role !== 'ADMIN'"
+            label="Apply"
+          ></p-button>
           <div
             *ngIf="currentUrl === '/job/admin' && user.role === 'ADMIN'"
             class="flex flex-column actions-super-user"
