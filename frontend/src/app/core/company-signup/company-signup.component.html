@@ -1,5 +1,5 @@
 <div class="company-signup">
-  <div class="company-signup-card">
+  <div class="company-signup-card" [formGroup]="formGroup">
     <div class="logo">
       <i class="pi pi-globe"></i>
       <p>SteelDoor</p>
@@ -38,13 +38,13 @@
       </div>
       <div class="inputs-wrapper">
         <label>Password:</label>
-        <input type="text" pInputText formControlName="Password" />
+        <p-password formControlName="password" [feedback]="false"></p-password>
       </div>
 
-      <p-button label="Sign up"></p-button>
+      <p-button label="Sign up" (click)="onHandleSignUp()"></p-button>
     </div>
     <div class="redirect">
-      <a href="">I have an account</a>
+      <a href="/">I have an account</a>
     </div>
   </div>
 </div>

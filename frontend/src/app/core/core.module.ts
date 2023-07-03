@@ -8,6 +8,10 @@ import { ButtonModule } from 'primeng/button';
 import { CompanySignupComponent } from './company-signup/company-signup.component';
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { CalendarModule } from 'primeng/calendar';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
+import { JobService } from '../services/job.service';
+import { UtilService } from '../services/utils.service';
 
 @NgModule({
   declarations: [LoginComponent, CompanySignupComponent, UserSignupComponent],
@@ -17,6 +21,9 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     ButtonModule,
     CalendarModule,
+    ReactiveFormsModule,
+    PasswordModule,
   ],
+  providers: [JobService, UtilService],
 })
 export class CoreModule {}

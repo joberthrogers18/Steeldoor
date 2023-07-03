@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { CoreModule } from './core/core.module';
 import { JobModule } from './job/job.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,6 +17,7 @@ import { JobModule } from './job/job.module';
     ComponentsModule,
     CoreModule,
     JobModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

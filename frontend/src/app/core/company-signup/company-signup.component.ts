@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { JobService } from 'src/app/services/job.service';
+import { UtilService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-company-signup',
@@ -7,7 +10,14 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./company-signup.component.scss'],
 })
 export class CompanySignupComponent implements OnInit {
-  formGroup: FormGroup | undefined;
+  formGroup!: FormGroup;
+  disableBtn: boolean = false;
+
+  constructor(
+    private jobService: JobService,
+    private utilService: UtilService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.formGroup = new FormGroup({
@@ -20,5 +30,48 @@ export class CompanySignupComponent implements OnInit {
       email: new FormControl<string>(''),
       password: new FormControl<string>(''),
     });
+  }
+
+  onHandleSignUp() {
+    const formData: any = this.formGroup.getRawValue();
+    console.log(formData.birthday);
+    console.log({
+      ...formData,
+      birthday: this.utilService.formatDate(formData.birthday),
+      role: 'ADMIN',
+    });
+
+    this.jobService
+      .createCompany({
+        name: formData.companyName,
+        address: formData.address,
+      })
+      .subscribe({
+        next: (data: any) => {
+          this.jobService
+            .createUser({
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              phone: formData.phone,
+              email: formData.email,
+              password: formData.password,
+              birthday: this.utilService.formatDate(formData.birthday),
+              role: 'ADMIN',
+              company: data.company,
+            })
+            .subscribe({
+              next: (data: any) => {
+                localStorage.setItem('user_info', JSON.stringify(data.data));
+                this.router.navigateByUrl('/');
+              },
+              error: (e: any) => {
+                console.log('Error to signup user', e);
+              },
+            });
+        },
+        error: (e: any) => {
+          console.log('Error to signup user', e);
+        },
+      });
   }
 }
