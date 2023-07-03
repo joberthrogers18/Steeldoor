@@ -104,6 +104,16 @@
         border: none;
       }
     }
+
+    .actions-super-user {
+      .delete {
+        .p-button {
+          background-color: $error-color;
+          width: 119px;
+          margin-top: 15px;
+        }
+      }
+    }
   }
 
   .card {

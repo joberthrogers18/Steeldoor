@@ -30,7 +30,7 @@
   </div>
   <div class="col-10 list">
     <div class="flex justify-content-end mb-5 create-job">
-      <p-button (click)="showDialog()" label="Create Job"></p-button>
+      <p-button (click)="showDialogCreateJob()" label="Create Job"></p-button>
     </div>
     <div class="">
       <div class="card grid">
@@ -55,6 +55,10 @@
         </div>
         <div class="btn-action col-4 flex justify-content-end">
           <p-button label="Apply"></p-button>
+          <div class="flex flex-column actions-super-user">
+            <p-button (click)="showDialogUsers()" label="Show Users"></p-button>
+            <p-button class="delete" label="Delete"></p-button>
+          </div>
         </div>
       </div>
     </div>

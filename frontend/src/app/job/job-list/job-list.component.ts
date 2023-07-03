@@ -15,7 +15,7 @@ export class JobListComponent implements OnInit {
   formGroupFilters!: FormGroup;
   formGroupDialog!: FormGroup;
   visibleDialogCreateJob: boolean = false;
-  visibleDialogShowUsersJob: boolean = true;
+  visibleDialogShowUsersJob: boolean = false;
   skills!: Skill[];
 
   ngOnInit() {
@@ -59,7 +59,11 @@ export class JobListComponent implements OnInit {
     });
   }
 
-  showDialog() {
+  showDialogCreateJob() {
     this.visibleDialogCreateJob = true;
+  }
+
+  showDialogUsers() {
+    this.visibleDialogShowUsersJob = true;
   }
 }
