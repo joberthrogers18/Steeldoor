@@ -7,7 +7,7 @@
     <div class="welcome">
       <p>Sign up user</p>
     </div>
-    <div class="fields">
+    <div class="fields" [formGroup]="formGroup">
       <div class="inputs-wrapper">
         <label>First Name:</label>
         <input type="text" pInputText formControlName="firstName" />
@@ -30,10 +30,10 @@
       </div>
       <div class="inputs-wrapper">
         <label>Password:</label>
-        <input type="text" pInputText formControlName="Password" />
+        <input type="text" pInputText formControlName="password" />
       </div>
 
-      <p-button label="Sign up"></p-button>
+      <p-button label="Sign up" (click)="onHandleSignUp()"></p-button>
     </div>
     <div class="redirect">
       <a href="">I have an account</a>

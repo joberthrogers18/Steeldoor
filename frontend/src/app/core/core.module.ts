@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { JobService } from '../services/job.service';
 import { UtilService } from '../services/utils.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [LoginComponent, CompanySignupComponent, UserSignupComponent],
@@ -23,7 +25,8 @@ import { UtilService } from '../services/utils.service';
     CalendarModule,
     ReactiveFormsModule,
     PasswordModule,
+    ToastModule,
   ],
-  providers: [JobService, UtilService],
+  providers: [JobService, UtilService, MessageService],
 })
 export class CoreModule {}

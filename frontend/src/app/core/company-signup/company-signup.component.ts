@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { JobService } from 'src/app/services/job.service';
 import { UtilService } from 'src/app/services/utils.service';
 
@@ -16,6 +17,7 @@ export class CompanySignupComponent implements OnInit {
   constructor(
     private jobService: JobService,
     private utilService: UtilService,
+    private messageService: MessageService,
     private router: Router
   ) {}
 
@@ -34,12 +36,6 @@ export class CompanySignupComponent implements OnInit {
 
   onHandleSignUp() {
     const formData: any = this.formGroup.getRawValue();
-    console.log(formData.birthday);
-    console.log({
-      ...formData,
-      birthday: this.utilService.formatDate(formData.birthday),
-      role: 'ADMIN',
-    });
 
     this.jobService
       .createCompany({
@@ -66,11 +62,21 @@ export class CompanySignupComponent implements OnInit {
               },
               error: (e: any) => {
                 console.log('Error to signup user', e);
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error',
+                  detail: 'Error when try to sign up. Try again later',
+                });
               },
             });
         },
         error: (e: any) => {
           console.log('Error to signup user', e);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Error when try to sign up. Try again later',
+          });
         },
       });
   }
