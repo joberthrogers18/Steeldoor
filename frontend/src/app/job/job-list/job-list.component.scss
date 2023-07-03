@@ -5,11 +5,40 @@
   height: calc(100vh - 50px);
   padding: 30px;
 
-  .filters {
+  .sidebar {
+    padding: 0;
+
+    .filters {
+      padding: 20px 10px;
+      border: 1px solid $border-color;
+
+      .input-wrapper {
+        margin-bottom: 15px;
+
+        .p-inputnumber {
+          width: 100%;
+        }
+
+        label {
+          margin-bottom: 5px;
+          color: $label-color;
+          font-size: 15px;
+        }
+      }
+
+      .btn-action {
+        .p-button {
+          width: 100%;
+          background-color: $primary-color;
+          border: none;
+        }
+      }
+    }
   }
 
   .list {
     height: 100%;
+    padding-left: 50px;
   }
 
   .card {
@@ -20,7 +49,6 @@
       font-size: 25px;
       font-weight: 700;
       color: $main-color-text;
-      line-height: 1px;
     }
 
     .salary {

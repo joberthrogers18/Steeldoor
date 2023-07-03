@@ -1,5 +1,25 @@
 <div class="job-list grid">
-  <div class="col-2 filters">mano</div>
+  <div class="col-2 sidebar">
+    <div class="filters">
+      <div class="input-wrapper flex flex-column">
+        <label htmlFor="title">Title</label>
+        <input pInputText id="title" formControlName="title" />
+      </div>
+      <div class="input-wrapper flex flex-column">
+        <label htmlFor="desSalary">Desire salary</label>
+        <p-inputNumber
+          id="desSalary"
+          formControlName="desireSalary"
+          mode="decimal"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="5"
+        />
+      </div>
+      <div class="btn-action">
+        <p-button label="Filter"></p-button>
+      </div>
+    </div>
+  </div>
   <div class="col-10 list">
     <div class="card grid">
       <div class="col-8">
