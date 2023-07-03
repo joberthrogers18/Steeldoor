@@ -1,4 +1,6 @@
 <div class="app">
-  <app-header></app-header>
+  <span *ngIf="!showHeader">
+    <app-header></app-header>
+  </span>
   <router-outlet></router-outlet>
 </div>

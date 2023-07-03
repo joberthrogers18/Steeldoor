@@ -14,10 +14,10 @@
       </div>
       <div class="inputs-wrapper">
         <label>Password:</label>
-        <input type="text" pInputText formControlName="password" />
+        <p-password formControlName="password" [feedback]="false"></p-password>
       </div>
 
-      <p-button label="Login"></p-button>
+      <p-button label="Login" (click)="handleLogin()"></p-button>
     </div>
     <div class="redirect">
       <a href="/sign-up-company">Sign up like company</a>
