@@ -42,6 +42,9 @@ public class Job {
     @Column(name = "max_salary", nullable = false)
     private Double maxSalary;
 
+    @Column(name = "creator", nullable = false)
+    private String creator;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "job_skill",
             joinColumns = @JoinColumn(name = "id_job", referencedColumnName = "id"),

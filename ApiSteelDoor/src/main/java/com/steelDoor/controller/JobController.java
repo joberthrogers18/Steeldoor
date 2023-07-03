@@ -109,4 +109,22 @@ public class JobController {
         }
     }
 
+    @RequestMapping(value = "/job/user/{email}", method = RequestMethod.GET)
+    public ResponseEntity<Object> getJobsByUserEmail(@PathVariable(value = "email") String email) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            List<Job> userJobs = jobService.getJobsByCreator(email);
+            map.put("data", userJobs);
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        } catch (Exception e) {
+            map.put("message", e);
+
+            if (e instanceof EntityNotFoundException) {
+                return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<Object>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

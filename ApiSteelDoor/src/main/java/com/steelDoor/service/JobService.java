@@ -95,4 +95,14 @@ public class JobService {
         return jobRepository.save(currentJob);
     }
 
+    public List<Job> getJobsByCreator(String email) {
+        List<Job> jobs = jobRepository.findByCreatorEquals(email);
+
+        if (jobs == null) {
+            return new ArrayList<>();
+        }
+
+        return jobs;
+    }
+
 }
