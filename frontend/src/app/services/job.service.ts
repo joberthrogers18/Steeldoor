@@ -31,4 +31,8 @@ export class JobService {
   createJob(body: any): Observable<any> {
     return this.http.post<any>(`http://localhost:8080/api/job`, body);
   }
+
+  deleteJobById(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/api/job/${id}`);
+  }
 }

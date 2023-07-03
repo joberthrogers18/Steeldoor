@@ -62,7 +62,11 @@
               (click)="showDialogUsers(job.users)"
               label="Show Users"
             ></p-button>
-            <p-button class="delete" label="Delete"></p-button>
+            <p-button
+              class="delete"
+              label="Delete"
+              (click)="deleteJob(job.id)"
+            ></p-button>
           </div>
         </div>
       </div>

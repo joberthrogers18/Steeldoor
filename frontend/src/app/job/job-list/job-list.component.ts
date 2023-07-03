@@ -96,6 +96,7 @@ export class JobListComponent implements OnInit {
 
     this.jobService.createJob(body).subscribe({
       next: (response: any) => {
+        this.formGroupDialog.reset();
         this.jobs.push(response.data);
         this.visibleDialogCreateJob = false;
       },
@@ -105,6 +106,22 @@ export class JobListComponent implements OnInit {
           severity: 'error',
           summary: 'Error',
           detail: 'Error when try to create a job. Try again later',
+        });
+      },
+    });
+  }
+
+  deleteJob(idJob: number) {
+    this.jobService.deleteJobById(idJob).subscribe({
+      next: (response: any) => {
+        this.jobs = this.jobs.filter((job: any) => job.id !== idJob);
+      },
+      error: (e: any) => {
+        console.log(e);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error when try to delete a job. Try again later',
         });
       },
     });
