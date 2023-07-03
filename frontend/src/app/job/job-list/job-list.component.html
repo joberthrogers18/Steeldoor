@@ -86,6 +86,10 @@
         <input pInputText id="location" formControlName="location" />
       </div>
       <div class="input-wrapper flex flex-column">
+        <label htmlFor="title">Title</label>
+        <input pInputText id="title" formControlName="title" />
+      </div>
+      <div class="input-wrapper flex flex-column">
         <label htmlFor="description">Description</label>
         <input pInputText id="description" formControlName="description" />
       </div>
@@ -94,7 +98,7 @@
           <label htmlFor="min-salary">Min Salary</label>
           <p-inputNumber
             id="min-salary"
-            formControlName="companyName"
+            formControlName="minSalary"
             mode="decimal"
             [minFractionDigits]="2"
             [maxFractionDigits]="5"
@@ -123,7 +127,7 @@
       </div>
       <div>
         <div class="btn-action">
-          <p-button label="Create"></p-button>
+          <p-button label="Create" (click)="createNewJob()"></p-button>
         </div>
       </div>
     </div>

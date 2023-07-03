@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { JobService } from 'src/app/services/job.service';
 
 interface Skill {
@@ -18,13 +19,17 @@ export class JobListComponent implements OnInit {
   formGroupDialog!: FormGroup;
   visibleDialogCreateJob: boolean = false;
   visibleDialogShowUsersJob: boolean = false;
-  skills!: Skill[];
+  skills: Skill[] = [];
   user: any = null;
   currentUrl: string = '';
   jobs: any = [];
   auxUsers: any = [];
 
-  constructor(private router: Router, private jobService: JobService) {
+  constructor(
+    private router: Router,
+    private jobService: JobService,
+    private messageService: MessageService
+  ) {
     this.user = JSON.parse(String(localStorage.getItem('user_info')));
     this.currentUrl = this.router.url;
   }
@@ -34,7 +39,19 @@ export class JobListComponent implements OnInit {
       this.jobService.getUserJobs(this.user.email).subscribe({
         next: (response: any) => {
           this.jobs = response.data;
-          console.log(response);
+        },
+      });
+
+      this.jobService.getAllSkills().subscribe({
+        next: (response: any) => {
+          {
+            response.data.forEach((skill: any) => {
+              this.skills.push({
+                name: skill.nameSkill,
+                code: skill,
+              });
+            });
+          }
         },
       });
     }
@@ -43,30 +60,6 @@ export class JobListComponent implements OnInit {
       title: new FormControl(''),
       desireSalary: new FormControl(''),
     });
-
-    this.skills = [
-      {
-        name: 'Java',
-        code: {
-          id: 1,
-          nameSkill: 'Java',
-        },
-      },
-      {
-        name: 'C',
-        code: {
-          id: 2,
-          nameSkill: 'C',
-        },
-      },
-      {
-        name: 'Javascript',
-        code: {
-          id: 3,
-          nameSkill: 'Javascript',
-        },
-      },
-    ];
 
     this.formGroupDialog = new FormGroup({
       companyName: new FormControl(''),
@@ -86,5 +79,34 @@ export class JobListComponent implements OnInit {
   showDialogUsers(users: any) {
     this.auxUsers = users;
     this.visibleDialogShowUsersJob = true;
+  }
+
+  createNewJob() {
+    const formData: any = this.formGroupDialog.getRawValue();
+    const body: any = {
+      companyName: formData.companyName,
+      location: formData.location,
+      title: formData.title,
+      description: formData.description,
+      minSalary: parseFloat(formData.minSalary),
+      maxSalary: parseFloat(formData.maxSalary),
+      creator: this.user.email,
+      skills: formData.selectedSkills.map((skill: any) => skill.code),
+    };
+
+    this.jobService.createJob(body).subscribe({
+      next: (response: any) => {
+        this.jobs.push(response.data);
+        this.visibleDialogCreateJob = false;
+      },
+      error: (e: any) => {
+        console.log('error login ', e);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error when try to create a job. Try again later',
+        });
+      },
+    });
   }
 }

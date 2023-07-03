@@ -20,7 +20,15 @@ export class JobService {
     return this.http.post<any>(`http://localhost:8080/api/user/login`, body);
   }
 
-  getUserJobs(email: String) {
+  getUserJobs(email: String): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/job/user/${email}`);
+  }
+
+  getAllSkills(): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/skills`);
+  }
+
+  createJob(body: any): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/api/job`, body);
   }
 }
