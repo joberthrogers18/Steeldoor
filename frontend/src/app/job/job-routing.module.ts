@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'list',
     component: JobListComponent,
   },
+  {
+    path: 'applied',
+    component: JobListComponent,
+  },
 ];
 
 @NgModule({

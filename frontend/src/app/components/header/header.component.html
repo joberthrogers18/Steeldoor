@@ -7,11 +7,11 @@
       </div>
     </ng-template>
     <ng-template pTemplate="end">
-      <div class="job-seeker">
-        <a href="">Jobs</a>
-        <a href="">Applied</a>
-        <a href="">Logout</a>
+      <div *ngIf="userData.role !== 'ADMIN'" class="job-seeker">
+        <a href="/job/list">Jobs</a>
+        <a href="/job/applied">Applied</a>
       </div>
+      <a href="/">Logout</a>
     </ng-template>
   </p-menubar>
 </div>
