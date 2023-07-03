@@ -5,6 +5,30 @@
   height: calc(100vh - 50px);
   padding: 30px;
 
+  .users {
+    .user {
+      border: 1px solid $border-color;
+      padding: 5px;
+      border-radius: 4px;
+      overflow: auto;
+      max-height: 60vh;
+      margin-bottom: 15px;
+
+      .title {
+        color: $primary-color;
+        font-weight: 700;
+      }
+
+      .value {
+        color: $description-color-text;
+
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
   .dialog {
     .input-wrapper {
       margin-bottom: 15px;

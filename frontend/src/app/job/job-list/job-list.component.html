@@ -61,7 +61,7 @@
   </div>
   <p-dialog
     header="Create Job"
-    [(visible)]="visible"
+    [(visible)]="visibleDialogCreateJob"
     [style]="{ width: '30%' }"
     [draggable]="false"
     [resizable]="false"
@@ -116,6 +116,23 @@
         <div class="btn-action">
           <p-button label="Create"></p-button>
         </div>
+      </div>
+    </div>
+  </p-dialog>
+  <p-dialog
+    header="User from Job"
+    [(visible)]="visibleDialogShowUsersJob"
+    [style]="{ width: '30%' }"
+    [draggable]="false"
+    [resizable]="false"
+    [modal]="true"
+  >
+    <div class="users">
+      <div class="user">
+        <p class="title">Joberth Rogers</p>
+        <hr />
+        <p class="value"><span>Email:</span> joberth.rogers18@gmail.com</p>
+        <p class="value"><span>Phone:</span> +556191067698</p>
       </div>
     </div>
   </p-dialog>

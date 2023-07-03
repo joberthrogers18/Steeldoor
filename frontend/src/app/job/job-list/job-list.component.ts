@@ -14,7 +14,8 @@ interface Skill {
 export class JobListComponent implements OnInit {
   formGroupFilters!: FormGroup;
   formGroupDialog!: FormGroup;
-  visible: boolean = true;
+  visibleDialogCreateJob: boolean = false;
+  visibleDialogShowUsersJob: boolean = true;
   skills!: Skill[];
 
   ngOnInit() {
@@ -59,6 +60,6 @@ export class JobListComponent implements OnInit {
   }
 
   showDialog() {
-    this.visible = true;
+    this.visibleDialogCreateJob = true;
   }
 }
