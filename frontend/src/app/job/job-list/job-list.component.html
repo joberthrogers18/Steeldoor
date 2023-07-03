@@ -1,6 +1,6 @@
 <div class="job-list grid">
   <div class="col-2 sidebar">
-    <div class="filters">
+    <div class="filters" [formGroup]="formGroupFilters">
       <div class="input-wrapper flex flex-column">
         <label htmlFor="title">Title</label>
         <input pInputText id="title" formControlName="title" />
@@ -30,7 +30,7 @@
   </div>
   <div class="col-10 list">
     <div class="flex justify-content-end mb-5 create-job">
-      <p-button label="Create Job"></p-button>
+      <p-button (click)="showDialog()" label="Create Job"></p-button>
     </div>
     <div class="">
       <div class="card grid">
@@ -59,4 +59,64 @@
       </div>
     </div>
   </div>
+  <p-dialog
+    header="Create Job"
+    [(visible)]="visible"
+    [style]="{ width: '30%' }"
+    [draggable]="false"
+    [resizable]="false"
+    [modal]="true"
+  >
+    <div class="dialog" [formGroup]="formGroupDialog">
+      <div class="input-wrapper flex flex-column">
+        <label htmlFor="company-name">Company Name</label>
+        <input pInputText id="company-name" formControlName="companyName" />
+      </div>
+      <div class="input-wrapper flex flex-column">
+        <label htmlFor="location">Location</label>
+        <input pInputText id="location" formControlName="location" />
+      </div>
+      <div class="input-wrapper flex flex-column">
+        <label htmlFor="description">Description</label>
+        <input pInputText id="description" formControlName="description" />
+      </div>
+      <div class="grid">
+        <div class="input-wrapper flex flex-column col-6">
+          <label htmlFor="min-salary">Min Salary</label>
+          <p-inputNumber
+            id="min-salary"
+            formControlName="companyName"
+            mode="decimal"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="5"
+          />
+        </div>
+        <div class="input-wrapper flex flex-column col-6">
+          <label htmlFor="max-salary">Max Salary</label>
+          <p-inputNumber
+            id="max-salary"
+            formControlName="maxSalary"
+            mode="decimal"
+            [minFractionDigits]="2"
+            [maxFractionDigits]="5"
+          />
+        </div>
+      </div>
+      <div class="input-wrapper flex flex-column">
+        <label htmlFor="skills">Skills</label>
+        <p-multiSelect
+          id="skills"
+          [options]="skills"
+          formControlName="selectedSkills"
+          optionLabel="name"
+          appendTo="body"
+        ></p-multiSelect>
+      </div>
+      <div>
+        <div class="btn-action">
+          <p-button label="Create"></p-button>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
 </div>

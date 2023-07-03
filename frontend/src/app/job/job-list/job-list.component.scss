@@ -5,6 +5,32 @@
   height: calc(100vh - 50px);
   padding: 30px;
 
+  .dialog {
+    .input-wrapper {
+      margin-bottom: 15px;
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      .p-inputnumber-input {
+        width: 100%;
+      }
+
+      .p-multiselect {
+        width: 100%;
+      }
+    }
+
+    .btn-action {
+      .p-button {
+        width: 100%;
+        background-color: $primary-color;
+        border: none;
+      }
+    }
+  }
+
   .sidebar {
     padding: 0;
 

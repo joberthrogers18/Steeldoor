@@ -6,6 +6,9 @@ import { JobListComponent } from './job-list/job-list.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { DialogModule } from 'primeng/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [JobListComponent],
@@ -15,6 +18,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ButtonModule,
     InputTextModule,
     InputNumberModule,
+    DialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MultiSelectModule,
   ],
 })
 export class JobModule {}
