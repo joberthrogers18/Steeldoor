@@ -30,7 +30,7 @@
       </div>
       <div class="inputs-wrapper">
         <label>Password:</label>
-        <input type="text" pInputText formControlName="password" />
+        <p-password formControlName="password" [feedback]="false"></p-password>
       </div>
 
       <p-button label="Sign up" (click)="onHandleSignUp()"></p-button>
@@ -39,4 +39,5 @@
       <a href="">I have an account</a>
     </div>
   </div>
+  <p-toast></p-toast>
 </div>
