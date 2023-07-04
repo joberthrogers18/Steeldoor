@@ -40,7 +40,10 @@ export class JobService {
     return this.http.get<any>(`http://localhost:8080/api/jobs`);
   }
 
-  getAppliedJobs(id: string): Observable<any> {
+  getAppliedJobs(id: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/user/${id}/jobs`);
+  }
+  updateJob(id: number, body: any): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/job/${id}`, body);
   }
 }

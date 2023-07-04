@@ -9,6 +9,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { UtilService } from '../services/utils.service';
+import { JobService } from '../services/job.service';
 
 @NgModule({
   declarations: [JobListComponent],
@@ -22,6 +26,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     FormsModule,
     ReactiveFormsModule,
     MultiSelectModule,
+    ToastModule,
   ],
+  providers: [MessageService, UtilService, JobService],
 })
 export class JobModule {}

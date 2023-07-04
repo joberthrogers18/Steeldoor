@@ -144,4 +144,31 @@ export class JobListComponent implements OnInit {
       },
     });
   }
+
+  applyJob(job: any) {
+    const body: any = {
+      ...job,
+      users: [...job.users, this.user],
+    };
+
+    this.jobService.updateJob(job.id, body).subscribe({
+      next: (data: any) => {
+        this.jobs = this.jobs.filter(
+          (currentJob: any) => currentJob.id !== job.id
+        );
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Job Applied successfully',
+        });
+      },
+      error: (e: any) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error when try to apply job. Try again later',
+        });
+      },
+    });
+  }
 }

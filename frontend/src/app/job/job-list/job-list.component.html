@@ -62,6 +62,7 @@
         <div class="btn-action col-4 flex justify-content-end">
           <p-button
             *ngIf="currentUrl === '/job/list' && user.role !== 'ADMIN'"
+            (click)="applyJob(job)"
             label="Apply"
           ></p-button>
           <div
@@ -164,4 +165,5 @@
       </div>
     </div>
   </p-dialog>
+  <p-toast></p-toast>
 </div>
