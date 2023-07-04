@@ -6,44 +6,45 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class JobService {
+  baseUrl: string = 'http://localhost:8080/api';
   constructor(private http: HttpClient) {}
 
   createCompany(body: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/api/company`, body);
+    return this.http.post<any>(`${this.baseUrl}/company`, body);
   }
 
   createUser(body: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/api/user`, body);
+    return this.http.post<any>(`${this.baseUrl}/user`, body);
   }
 
   loginUser(body: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/api/user/login`, body);
+    return this.http.post<any>(`${this.baseUrl}/user/login`, body);
   }
 
   getUserJobs(email: String): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/api/job/user/${email}`);
+    return this.http.get<any>(`${this.baseUrl}/job/user/${email}`);
   }
 
   getAllSkills(): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/api/skills`);
+    return this.http.get<any>(`${this.baseUrl}/skills`);
   }
 
   createJob(body: any): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/api/job`, body);
+    return this.http.post<any>(`${this.baseUrl}/job`, body);
   }
 
   deleteJobById(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/api/job/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/job/${id}`);
   }
 
   getAllJobs(): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/api/jobs`);
+    return this.http.get<any>(`${this.baseUrl}/jobs`);
   }
 
   getAppliedJobs(id: number): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/api/user/${id}/jobs`);
+    return this.http.get<any>(`${this.baseUrl}/user/${id}/jobs`);
   }
   updateJob(id: number, body: any): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/api/job/${id}`, body);
+    return this.http.get<any>(`${this.baseUrl}/job/${id}`, body);
   }
 }

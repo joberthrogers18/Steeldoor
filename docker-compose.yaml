@@ -13,7 +13,7 @@ services:
     volumes:
       - ./db/start_db.sql:/docker-entrypoint-initdb.d/init.sql:z
     networks:
-      - spring-postgres
+      - steeldoor
   api:
     restart: always
     depends_on:
@@ -23,9 +23,18 @@ services:
     ports:
       - 8080:8080
     networks:
-      - spring-postgres
+      - steeldoor
+  frontend:
+    restart: always
+    depends_on:
+      - api
+    build: frontend
+    ports:
+      - 4200:4200
+    networks:
+      - steeldoor
 volumes:
   db:
     driver: local
 networks:
-  spring-postgres:
+  steeldoor:
